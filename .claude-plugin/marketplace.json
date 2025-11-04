@@ -1,0 +1,28 @@
+{
+  "name": "obsidian-note-taker-marketplace",
+  "metadata": {
+    "description": "A comprehensive Claude Code plugin for creating well-formatted Obsidian notes with proper frontmatter, templates, and organization",
+    "version": "1.0.0"
+  },
+  "owner": {
+    "name": "RandomStateLabs",
+    "url": "https://github.com/RandomStateLabs/obsidian-note-taker"
+  },
+  "plugins": [
+    {
+      "name": "obsidian-note-taker",
+      "source": "./plugins/obsidian-note-taker",
+      "description": "Create well-formatted Obsidian notes with proper frontmatter, templates, and organization. Includes specialized agents for note organization, slash commands for quick note creation, and comprehensive validation tools.",
+      "category": "productivity",
+      "tags": [
+        "obsidian",
+        "notes",
+        "knowledge-management",
+        "markdown",
+        "zettelkasten",
+        "productivity",
+        "documentation"
+      ]
+    }
+  ]
+}
