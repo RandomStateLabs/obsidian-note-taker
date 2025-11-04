@@ -1,102 +1,149 @@
-# Obsidian Note-Taker Skill for Claude Code
+# Obsidian Note-Taker Plugin for Claude Code
 
-A Claude Code skill that helps you create well-formatted Obsidian notes with proper frontmatter, templates, and organization.
+A comprehensive Claude Code plugin for creating, organizing, and maintaining well-formatted Obsidian notes with proper frontmatter, templates, and vault organization.
 
-## What This Skill Does
+## 🎯 What This Plugin Provides
 
-This skill provides:
-- **Structured note templates** for different types of content (technical docs, business ideas, meeting notes, etc.)
-- **Automatic frontmatter generation** with proper YAML formatting
-- **Folder organization guidance** based on note type
-- **Wikilink formatting** for internal references
-- **Validation tooling** to ensure note quality
-- **Consistent naming conventions** for your Obsidian vault
+### **Agent Skills**
+- **obsidian-note-taker** - Automatically activated skill for creating formatted notes
 
-## When to Use This Skill
+### **Specialized Agents**
+- **note-organizer** - Analyze and organize existing notes, fix frontmatter, repair broken links
+- **vault-analyzer** - Generate insights, visualize connections, detect knowledge gaps
 
-The skill automatically activates when you:
-- Ask to "create a note" or "document" something for Obsidian
-- Mention your vault, knowledge base, or Zettelkasten
-- Want to capture ideas, meeting notes, or technical documentation
-- Need help structuring information in Obsidian-compatible markdown
+### **Slash Commands**
+- `/create-note` - Interactive note creation wizard
+- `/organize-vault` - Trigger vault organization and cleanup
+- `/validate-notes` - Run validation checks on note formatting
 
-You can also manually invoke it using: `/skill obsidian-note-taker`
+### **Validation Tools**
+- Python script for automated frontmatter and structure validation
+- Pre-commit hook support
+- CI/CD integration ready
 
-## Installation
+## 📦 Components
 
-### Option 1: Personal Skill (Recommended)
-
-Install globally across all your projects:
-
-```bash
-# Create skills directory if it doesn't exist
-mkdir -p ~/.claude/skills
-
-# Clone or copy this repository
-git clone https://github.com/YOUR_USERNAME/obsidian-note-taker ~/.claude/skills/obsidian-note-taker
-
-# Or manually copy
-cp -r obsidian-note-taker ~/.claude/skills/
+```
+plugins/obsidian-note-taker/
+├── agents/              # Specialized AI agents
+│   ├── note-organizer.md
+│   └── vault-analyzer.md
+├── commands/            # Slash commands
+│   ├── create-note.md
+│   ├── organize-vault.md
+│   └── validate-notes.md
+└── skills/              # Agent Skills
+    └── obsidian-note-taker/
+        ├── SKILL.md
+        ├── references/
+        └── scripts/
 ```
 
-### Option 2: Project Skill
+## 🚀 Installation
 
-Install for a specific project only:
+### Option 1: Via Claude Code (Recommended)
+
+```bash
+# Add the marketplace
+claude code plugin add https://github.com/RandomStateLabs/obsidian-note-taker
+
+# Install the plugin
+/plugin install obsidian-note-taker
+```
+
+### Option 2: Manual Installation
+
+```bash
+# Clone to Claude Code plugins directory
+git clone https://github.com/RandomStateLabs/obsidian-note-taker ~/.claude/plugins/obsidian-note-taker
+
+# Or download and extract
+cd ~/.claude/plugins/
+wget https://github.com/RandomStateLabs/obsidian-note-taker/archive/main.zip
+unzip main.zip
+mv obsidian-note-taker-main obsidian-note-taker
+```
+
+### Option 3: Project-Specific Installation
 
 ```bash
 # In your project directory
-mkdir -p .claude/skills
-
-# Clone or copy
-git clone https://github.com/YOUR_USERNAME/obsidian-note-taker .claude/skills/obsidian-note-taker
+mkdir -p .claude/plugins
+git clone https://github.com/RandomStateLabs/obsidian-note-taker .claude/plugins/obsidian-note-taker
 ```
 
-### Option 3: Manual Installation
-
-1. Download this repository
-2. Copy the entire folder to `~/.claude/skills/obsidian-note-taker/`
-3. Restart Claude Code if it's running
-
-## Verify Installation
-
-After installation, you can verify the skill is available:
+## ✅ Verify Installation
 
 ```bash
-# List available skills
-ls ~/.claude/skills/
+# List installed plugins
+/plugin list
 
-# Check if obsidian-note-taker is listed
-ls ~/.claude/skills/obsidian-note-taker/
+# Check plugin directory
+ls ~/.claude/plugins/obsidian-note-taker/
 ```
 
 You should see:
 ```
-SKILL.md
-references/
-scripts/
+agents/
+commands/
+skills/
+.claude-plugin/
 ```
 
-## Usage
+## 💻 Usage
 
-### Automatic Activation
+### Creating Notes
 
-Simply ask Claude Code to create a note:
-
+**Via Skill (Automatic)**
+Simply ask Claude Code naturally:
 ```
-"Create a technical note documenting our new authentication system"
-"I need to capture this business idea for a SaaS product"
-"Help me create meeting notes for today's standup"
-```
-
-### Manual Invocation
-
-If you want to explicitly use this skill:
-
-```
-/skill obsidian-note-taker
+"Create a technical note about our new Redis caching layer"
+"Document this business idea for a SaaS product"
+"Help me create meeting notes for the standup"
 ```
 
-Then provide your note requirements.
+**Via Command (Interactive)**
+```
+/create-note
+```
+→ Guides you through an interactive wizard
+
+### Organizing Your Vault
+
+**Quick Organization**
+```
+/organize-vault
+```
+→ Analyzes vault structure, fixes frontmatter, repairs broken links
+
+**Manual Invocation of note-organizer Agent**
+```
+"Help me organize my Obsidian vault"
+"Fix all broken wikilinks"
+"Clean up my note frontmatter"
+```
+
+### Analyzing Your Vault
+
+**Invoke vault-analyzer Agent**
+```
+"Analyze my Obsidian vault"
+"Show me my most important notes"
+"Find knowledge gaps in my vault"
+"What's my vault health score?"
+```
+
+### Validating Notes
+
+**Single File**
+```
+/validate-notes path/to/note.md
+```
+
+**Entire Vault**
+```
+/validate-notes .
+```
 
 ## Examples
 
@@ -132,7 +179,19 @@ Then provide your note requirements.
 3. Include sections for attendees, agenda, decisions, action items
 4. Format date in YYYY-MM-DD format
 
-## What's Included
+## 📚 What's Included
+
+### Agents
+- **note-organizer** - Vault cleanup and organization specialist
+- **vault-analyzer** - Strategic insights and health monitoring
+
+### Commands
+- `/create-note` - Interactive note creation
+- `/organize-vault` - Automated vault organization
+- `/validate-notes` - Note validation and quality checks
+
+### Skills
+- **obsidian-note-taker** - Core note creation with templates
 
 ### Templates
 - **Technical**: Architecture docs, how-to guides, documentation
@@ -141,15 +200,15 @@ Then provide your note requirements.
 - **Research**: Literature notes, learning notes
 
 ### Reference Materials
-- `references/folder-structure.md` - Complete vault organization guide
-- `references/templates.md` - Detailed templates for all note types
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/references/folder-structure.md` - Vault organization guide
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/references/templates.md` - Detailed templates
 
 ### Validation Tool
-- `scripts/validate_frontmatter.py` - Python script to validate note structure
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/scripts/validate_frontmatter.py` - Python validation script
 
 Run validation:
 ```bash
-python ~/.claude/skills/obsidian-note-taker/scripts/validate_frontmatter.py "My Note.md"
+python plugins/obsidian-note-taker/skills/obsidian-note-taker/scripts/validate_frontmatter.py "My Note.md"
 ```
 
 ## Frontmatter Format
@@ -175,34 +234,66 @@ tags:
 - **Length**: Under 60 characters
 - **Avoid**: `: / \ | * ? " < >`
 
-## Customization
+## ⚙️ Customization
 
-You can customize templates by editing:
-- `references/templates.md` - Modify existing templates
-- `references/folder-structure.md` - Adjust folder organization
-- `SKILL.md` - Change skill behavior and instructions
+You can customize the plugin by editing:
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/references/templates.md` - Modify note templates
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/references/folder-structure.md` - Adjust vault organization
+- `plugins/obsidian-note-taker/skills/obsidian-note-taker/SKILL.md` - Change skill behavior
+- `plugins/obsidian-note-taker/agents/*.md` - Customize agent instructions
+- `plugins/obsidian-note-taker/commands/*.md` - Modify command workflows
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
-### Skill Not Activating
+### Plugin Not Found
 
 1. **Check installation location:**
    ```bash
-   ls ~/.claude/skills/obsidian-note-taker/SKILL.md
+   ls ~/.claude/plugins/obsidian-note-taker/
    ```
 
-2. **Verify SKILL.md frontmatter** has proper YAML format
-
-3. **Try manual invocation:**
+2. **Verify plugin.json exists:**
+   ```bash
+   cat ~/.claude/plugins/obsidian-note-taker/.claude-plugin/plugin.json
    ```
-   /skill obsidian-note-taker
+
+3. **Reinstall the plugin:**
+   ```bash
+   /plugin install obsidian-note-taker
+   ```
+
+### Commands Not Working
+
+1. **List available commands:**
+   ```bash
+   /help
+   ```
+
+2. **Check command files exist:**
+   ```bash
+   ls ~/.claude/plugins/obsidian-note-taker/commands/
+   ```
+
+### Agents Not Responding
+
+1. **Invoke explicitly:**
+   ```
+   "Use the note-organizer agent to help me"
+   ```
+
+2. **Check agent files:**
+   ```bash
+   ls ~/.claude/plugins/obsidian-note-taker/agents/
    ```
 
 ### Validation Script Not Working
 
 Ensure Python 3 and PyYAML are installed:
 ```bash
-pip install pyyaml
+pip3 install pyyaml
+
+# Verify installation
+python3 -c "import yaml; print('PyYAML installed successfully')"
 ```
 
 ## Contributing
